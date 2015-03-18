@@ -4,18 +4,38 @@
 <thead>
 	<tr>
 		<th ng-repeat="field in fields" ng-click="sort(field)">
-			{{ field }}
+			{{ field | uppercase }}
 			<span ng-show="sort.field === field && !sort.order" class="glyphicon glyphicon-chevron-down"></span>
 			<span ng-show="sort.field === field && sort.order" class="glyphicon glyphicon-chevron-up"></span>
 		</th>
 	</tr>
 </thead>
 <tbody>
-	<tr ng-repeat="video in videos | filter: query | orderBy: sort(field): sort.order">
-		<td ng-repeat="field in fields">
-			{{ video[field] }}
-		</td>
+	<tr ng-click="show(video.id)" ng-repeat="video in videos | filter: query | orderBy: sort.field: sort.order | offset: 
+	(currentPage*videosPerPage) | limitTo: videosPerPage">
+		
+		<td> {{ video.id }} </td>
+		<td> {{ video.title }} </td>
+		<td> {{ video.shortDescription }} </td>
+		<td> <image src = "{{ video.links['logo-image'] }}" width='100'> </td>
+
+		<!-- <td ng-repeat="field in fields">
+			{{ video[field] }}			unable to pull out and display image when using this method
+		</td> -->
+
 	</tr>
 </tbody>
+<tfoot>
+  <div class="pagination" page="currentPage" total-items="totalVideos" items-per-page="videosPerPage">
+	<li ng-class="prevPageDisabled()" ><a href ng-click="prevPage()">&laquo;</a></li>
+	<!-- <li><a href ng-click="setPage(0)">1</a></li>
+	<li><a href ng-click="setPage(1)">2</a></li>
+	<li><a href ng-click="setPage(2)">3</a></li>
+	<li><a href ng-click="setPage(3)">4</a></li>
+	<li><a href ng-click="setPage(4)">5</a></li> -->
+	<li ng-class="nextPageDisabled()"><a href ng-click="nextPage()">&raquo;</a></li>
+</div>
+</tfoot>
+
 
 </table>
