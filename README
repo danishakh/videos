@@ -1,6 +1,6 @@
 Videos App Demo
-This simple AngularJS web application gets data from a JSON file via a RESTful API and displays it in a list! Developed using Node, Express,
-AngularJS and Bourne. 
+This simple AngularJS web application gets data from a JSON file via a RESTful API and displays it in a list! 
+Developed using Node, Express, AngularJS and Bourne. 
 
 Author : Danish Akhtar
 Date   : March 18, 2015
